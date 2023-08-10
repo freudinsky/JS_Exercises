@@ -1,6 +1,10 @@
 const getUserChoice = (userInput) => {
   userInput = userInput.toLowerCase();
-  if (userInput == "rock" || userInput == "paper" || userInput == "scissors") {
+  if (
+    userInput === "rock" ||
+    userInput === "paper" ||
+    userInput === "scissors"
+  ) {
     return userInput;
   } else {
     console.log("Please provide valid input!");
@@ -11,37 +15,34 @@ function getComputerChoice() {
   switch (rng) {
     case 0:
       return "rock";
-      break;
     case 1:
       return "scissors";
-      break;
     case 2:
       return "paper";
-      break;
   }
 }
 function determineWinner(userChoice, computerChoice) {
-  if (userChoice == computerChoice) {
+  if (userChoice === computerChoice) {
     return "That game was a tie!";
   }
-  if (userChoice == "rock") {
-    if (computerChoice == "paper") {
+  if (userChoice === "rock") {
+    if (computerChoice === "paper") {
       return "Computer won!";
-    } else if (computerChoice == "scissors") {
+    } else if (computerChoice === "scissors") {
       return "You won!";
     }
   }
-  if (userChoice == "paper") {
-    if (computerChoice == "scissors") {
+  if (userChoice === "paper") {
+    if (computerChoice === "scissors") {
       return "Computer won!";
-    } else if (computerChoice == "rock") {
+    } else if (computerChoice === "rock") {
       return "You won!";
     }
   }
-  if (userChoice == "scissors") {
-    if (computerChoice == "rock") {
+  if (userChoice === "scissors") {
+    if (computerChoice === "rock") {
       return "Computer won!";
-    } else if (computerChoice == "paper") {
+    } else if (computerChoice === "paper") {
       return "You won!";
     }
   }
