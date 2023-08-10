@@ -100,13 +100,21 @@ console.log(invMails)
 // 6. Sort the inventors by birthdate, youngest to oldest (eg: the one whose birth year is closer to us on top)
 // Expected output: an array of inventors going from "Katherine Blodgett" -> to "Nicolaus Copernicus"
 
-
+const invDateSort = inventors.sort(((a,b) => (a.year < b.year) ? 1 : (b.year < a.year) ? -1 : 0))
+console.log(invDateSort.map((inv)=> `${inv.first} ${inv.last}`))
 
 // Array.prototype.reduce()
 // 7. How many years did all the inventors live all together?
 
+const invLongLive = inventors.reduce((lived, inventor) => { return lived + (inventor.passed - inventor.year)},0)
+console.log(invLongLive)
+
 // Array.prototype.sort()
 // 8. Sort the inventors by years lived
+
+const invYearsSort = inventors.sort((a,b) =>
+    ((a.passed-a.year)>(b.passed-b.year) ? 1 : (a.passed-a.year)<(b.passed-b.year)?-1:0))
+console.log(invYearsSort.map((inv)=> `${inv.first} ${inv.last}`))
 
 // Array.prototype.filter()
 // 9. Create a list of Boulevards in Paris that contain 'de' anywhere in the name
@@ -145,6 +153,10 @@ const boulevardsInParis = [
     "Boulevard Voltaire",
     "Boulevard de la Zone"
 ];
+
+
+const deBoul = boulevardsInParis.filter ((blvd) => blvd.includes("de"))
+console.log(deBoul)
 
 // Array.prototype.sort()
 // 10. Sort the people alphabetically by last name
@@ -193,6 +205,9 @@ const people = [
     "Biondo, Frank"
 ];
 
+const nameSort = people.sort((a,b) => (a > b) ? 1 : (a < b) ? -1 : 0)
+console.log(nameSort)
+
 // Array.prototype.reduce()
 // 11. Sum up the instances of each of these vehicles
 // (eg: how many times each vehicle appears in the array)
@@ -215,6 +230,17 @@ const data = [
     "skateboard"
 ];
 
+const vehicleSum = data.reduce((count, vehicle) => {
+    if (count.hasOwnProperty(vehicle)) {
+        count[vehicle]++;
+    } else {
+        count[vehicle] = 1;
+    }
+    return count;
+}, {});
+
+console.log(vehicleSum);
+
 // Array.prototype.some()
 // 12. Is at least one person 18 years old?
 
@@ -225,5 +251,17 @@ const family = [
     { name: "Lydia", year: 2015 }
 ];
 
+const date = new Date()
+const currentYr = date.getFullYear()
+
+const adult = family.some((fam) => (currentYr - fam.year) >= 18)
+
+console.log(adult)
+
 // Array.prototype.every
 // 13. Do all names of the family members start with the letter L?
+const lMatch = new RegExp("^L")
+const startL = family.every((fam) => {
+    return lMatch.test(fam.name);
+})
+console.log(startL)
